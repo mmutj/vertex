@@ -4,7 +4,8 @@ const path = require('path');
 const util = require('../libs/util');
 class DeleteRuleMod {
   add (options) {
-    const id = util.uuid.v4().split('-')[0];
+    // MODIFIED: use options.id if provided, fallback to generated UUID
+    const id = options.id || util.uuid.v4().split('-')[0];
     const deleteRuleSet = {
       id
     };
