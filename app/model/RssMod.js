@@ -5,7 +5,8 @@ const Rss = require('../common/Rss');
 const util = require('../libs/util');
 class RssMod {
   add (options) {
-    const id = util.uuid.v4().split('-')[0];
+    // MODIFIED: use options.id if provided, fallback to generated UUID
+    const id = options.id || util.uuid.v4().split('-')[0];
     const rssSet = { ...options };
     rssSet.id = id;
     fs.writeFileSync(path.join(__dirname, '../data/rss/', id + '.json'), JSON.stringify(rssSet, null, 2));
